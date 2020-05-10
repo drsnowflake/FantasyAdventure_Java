@@ -25,8 +25,11 @@ public abstract class Player{
     }
 
     public void takeDamage(int damage){
-        if (damage >= 0)
-        this.currentHP -= damage;
+        if ((this.currentHP - damage) >= 0){
+            this.currentHP -= damage;
+        } else {
+            this.currentHP = 0;
+        }
     }
 
     public void takeHeal(int health){
