@@ -1,4 +1,6 @@
 import Enemies.Melee.Orc;
+import Interfaces.IDefend;
+import Players.Casters.Defenders.Dragon;
 import Players.Casters.Warlock;
 import Spells.MagicMissile;
 import org.junit.Before;
@@ -11,17 +13,19 @@ public class MageTest {
     Warlock lock;
     Orc orc;
     MagicMissile mm;
+    Dragon dragon;
 
     @Before
     public void before(){
-        lock = new Warlock("Steve", 20);
+        lock = new Warlock("Mike", 10);
         orc = new Orc(100);
         mm = new MagicMissile();
+        dragon = new Dragon();
     }
 
     @Test
     public void casterHasHP() {
-        assertEquals(20, lock.getCurrentHP());
+        assertEquals(10, lock.getCurrentHP());
     }
 
     @Test
@@ -32,16 +36,23 @@ public class MageTest {
 
     @Test
     public void casterCanTakeDamage(){
-        lock.takeDamage(5);
-        assertEquals(15, lock.getCurrentHP());
-        assertEquals(20, lock.getBaseHP());
+        lock.getAttacked(5);
+        assertEquals(5, lock.getCurrentHP());
+        assertEquals(10, lock.getBaseHP());
+    }
+
+    @Test
+    public void casterCanReduceDamage(){
+        lock.pickDefender(dragon);
+        lock.getAttacked(3);
+        assertEquals(10, lock.getCurrentHP());
     }
 
     @Test
     public void casterCannotExceedBaseHP(){
-        lock.takeDamage(6);
+        lock.getAttacked(6);
         lock.takeHeal(10000);
-        assertEquals(20, lock.getCurrentHP());
+        assertEquals(10, lock.getCurrentHP());
     }
 
     @Test
@@ -67,4 +78,5 @@ public class MageTest {
         System.out.println(orc.getHealthPool());
         assertTrue(orc.getHealthPool() != 100);
     }
+
 }

@@ -1,6 +1,8 @@
 package Players.Casters.Defenders;
 
-public class Dragon {
+import Interfaces.IDefend;
+
+public class Dragon implements IDefend {
 
     int damageReduction = 5;
 

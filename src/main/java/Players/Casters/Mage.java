@@ -5,7 +5,7 @@ import Interfaces.IDefend;
 import Interfaces.ISpell;
 import Players.Player;
 
-public abstract class Mage extends Player implements IDefend {
+public abstract class Mage extends Player {
 
     ISpell spell;
     IDefend defender;
@@ -36,9 +36,12 @@ public abstract class Mage extends Player implements IDefend {
         enemy.takeDamage(damageDealt);
     }
 
-    public void takeDamage(int damage){
-        if (this.defender != null){
-
+    public void getAttacked(int damage){
+        if (defender == null){
+            this.takeDamage(damage);
+        } else {
+            this.takeDamage(damage - defender.defend());
         }
+
     }
 }

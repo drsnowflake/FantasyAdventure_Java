@@ -1,6 +1,8 @@
 package Players.Casters.Defenders;
 
-public class Ogre {
+import Interfaces.IDefend;
+
+public class Ogre implements IDefend {
 
     int damageReduction = 2;
 
