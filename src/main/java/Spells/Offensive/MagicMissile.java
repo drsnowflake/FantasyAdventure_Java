@@ -1,4 +1,4 @@
-package Spells;
+package Spells.Offensive;
 
 import Interfaces.ISpell;
 

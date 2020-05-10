@@ -1,8 +1,7 @@
 import Enemies.Melee.Orc;
-import Interfaces.IDefend;
 import Players.Casters.Defenders.Dragon;
 import Players.Casters.Warlock;
-import Spells.MagicMissile;
+import Spells.Offensive.MagicMissile;
 import org.junit.Before;
 import org.junit.Test;
 
