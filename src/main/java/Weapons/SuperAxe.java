@@ -2,22 +2,22 @@ package Weapons;
 
 import Interfaces.IWeapon;
 
-public class Axe implements IWeapon {
-
+public class SuperAxe implements IWeapon {
     public int numOfDice() {
-        return 2;
+        return 6;
     }
 
     public int diceSize() {
-        return 8;
+        return 12;
     }
 
     public int baseDamage() {
-        return 4;
+        return 10;
     }
 
     public void attack() {
 
     }
+
 
 }

@@ -1,8 +1,6 @@
-package Players.Caster;
+package Players.Casters;
 
-import Players.Player;
-
-public class Wizard extends Player {
+public class Wizard extends Mage {
     public Wizard(String name, int healthPool) {
         super(name, healthPool);
     }

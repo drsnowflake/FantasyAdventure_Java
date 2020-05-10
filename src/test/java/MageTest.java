@@ -1,0 +1,70 @@
+import Enemies.Melee.Orc;
+import Players.Casters.Warlock;
+import Spells.MagicMissile;
+import org.junit.Before;
+import org.junit.Test;
+
+import static org.junit.Assert.*;
+
+public class MageTest {
+
+    Warlock lock;
+    Orc orc;
+    MagicMissile mm;
+
+    @Before
+    public void before(){
+        lock = new Warlock("Steve", 20);
+        orc = new Orc(100);
+        mm = new MagicMissile();
+    }
+
+    @Test
+    public void casterHasHP() {
+        assertEquals(20, lock.getCurrentHP());
+    }
+
+    @Test
+    public void casterHasSpell() {
+        lock.changeSpell(mm);
+        assertEquals(mm, lock.getSpell());
+    }
+
+    @Test
+    public void casterCanTakeDamage(){
+        lock.takeDamage(5);
+        assertEquals(15, lock.getCurrentHP());
+        assertEquals(20, lock.getBaseHP());
+    }
+
+    @Test
+    public void casterCannotExceedBaseHP(){
+        lock.takeDamage(6);
+        lock.takeHeal(10000);
+        assertEquals(20, lock.getCurrentHP());
+    }
+
+    @Test
+    public void casterCanDealDamage(){
+        lock.changeSpell(mm);
+        lock.cast(orc);
+        assertTrue(orc.getHealthPool() != 100);
+    }
+
+    @Test
+    public void casterCannotDealDamageUnarmed(){
+        lock.cast(orc);
+        assertEquals(100, orc.getHealthPool());
+    }
+
+    @Test
+    public void casterCanSwitchSpellInCombat(){
+        lock.cast(orc);
+        System.out.println(orc.getHealthPool());
+        assertEquals(100, orc.getHealthPool());
+        lock.changeSpell(mm);
+        lock.cast(orc);
+        System.out.println(orc.getHealthPool());
+        assertTrue(orc.getHealthPool() != 100);
+    }
+}

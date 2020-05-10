@@ -1,10 +1,10 @@
 package Interfaces;
 
-import Enemies.Enemy;
-
 public interface IWeapon {
 
-    public int damage();
+    public int numOfDice();
+    public int diceSize();
+    public int baseDamage();
+    public void attack();
 
-    public void attack(Enemy enemy);
 }
